@@ -1,14 +1,25 @@
-# define a function that returns the number of arguments in a list
-def args(index):
-    
+def print_arguments():
+    import sys
+
+    arguments = sys.argv[1:]
+
+    num_arguments = len(arguments)
+
+    # Create a string to hold the output
     output = ""
 
-    if len(index) > 0:
-        output += "{} arguments: \n".format(len(index))
+    # Construct the output string
+    if num_arguments == 0:
+        output += "0 argument{}.\n".format('s' if num_arguments != 1 else '')
     else:
-        output += "{} arguments.\n".format(len(index))
+        output += "{} argument{}:\n".format(num_arguments, 's' if num_arguments != 1 else '')
 
-    for x, i in enumerate(index, 1):
-        output += "{}: {}\n".format(x, i)
+        # Construct string for each argument with its position
+        for i, arg in enumerate(arguments, 1):
+            output += "{}: {}\n".format(i, arg)
 
-    return output
+    return output.strip()  # Remove trailing newline if no arguments were provided
+
+
+
+
