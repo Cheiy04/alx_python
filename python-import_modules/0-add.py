@@ -1,3 +1,7 @@
-additon = __import__('add_0').add
+from add_0 import add
 
-print(additon(1, 2))
+a= 1
+b=2
+
+result = add(a, b)
+print("{} + {} = {}".format(a, b, result))
