@@ -1,11 +1,11 @@
-def convert_to_integer_or_string(value):
-    if isinstance(value, str):
-        if value.isdigit() or int(value) < 0:  # Checking if the string contains only digits
-            return int(value)  
+def convert_to_integer_or_string(a):
+    if isinstance(a, str):
+        if a.isdigit() or int(a) < 0:  # Checking if the string contains only digits
+            return int(a)  
         else:
-            return value
-    elif isinstance(value, int):
-        return value
+            return a
+    elif isinstance(a, int):
+        return a
     else:
         return "Unsupported type"
 
