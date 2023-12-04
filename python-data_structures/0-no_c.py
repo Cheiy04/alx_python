@@ -1,9 +1,9 @@
 def no_c(my_string):
     result = ""
 
-    for char in my_string:
-        if char.lower() != "c":
-            result += char
+    for i in my_string:
+        if i.lower() != "c" or i.upper() != "C":
+            result += i
     return result
 
 if __name__ == '__main__':
