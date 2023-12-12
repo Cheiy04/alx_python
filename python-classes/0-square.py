@@ -15,7 +15,7 @@ class Square:
         >>> print(square.__size)
         5
     """
-    def __init__(self, size):
+    def __init__(self, size = 3):
         """Initialize a Square object with a specified size.
 
         Args:
@@ -23,6 +23,4 @@ class Square:
         """
         self.__size = size
 
-my_square = Square(3)
-print(type(my_square))
-print(my_square.__dict__)
+
