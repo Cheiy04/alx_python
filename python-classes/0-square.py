@@ -15,11 +15,11 @@ class Square:
         >>> print(square.__size)
         5
     """
-    def __init__(self, size):
+    def __init__(self, size = 3):
         """Initialize a Square object with a specified size.
 
         Args:
-            size: The size of the square.
+            size: The size of the square. Set to defult as 3
         """
         self.size = size
 
