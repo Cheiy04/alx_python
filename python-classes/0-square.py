@@ -5,23 +5,26 @@ class Square:
     It initializes the size attribute during object creation.
 
     Attributes:
-        We are using a private attribute that allocates the size.
+        __size (int): The size of the square.
 
     Methods:
-        Only the __init__  method has been utilised in this class
+        No additional methods are provided in this Class
 
-    Results of the class should be as follows:
+    Example:
         >>> square = Square(5)
         >>> print(square.__size)
         5
     """
-    def __init__(self, size = 3):
+
+    def __init__(self, size=3):
         """Initialize a Square object with a specified size.
 
         Args:
-            size: The size of the square. Set to defult as 3
+            size (int): The size of the square. Defaults to 3.
         """
         self.__size = size
 
-my_square = Square()
 
+my_square = Square()
+print(type(my_square))
+print(my_square.__dict__)
