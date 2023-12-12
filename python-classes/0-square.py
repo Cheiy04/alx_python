@@ -21,7 +21,7 @@ class Square:
         Args:
             size: The size of the square. Set to defult as 3
         """
-        self.size = size
+        self.__size = size
 
 my_square = Square(3)
 print(type(my_square))
