@@ -13,7 +13,7 @@ class Square(Rectangle):
             size (int): The size of the square.
         """
         self.__size = size 
-        super().__init__(size, size)
+        super().__init__('size', size)
         self.integer_validator("size", size)  # Call the constructor of the parent class (Rectangle)
     def __str__(self):
         """
@@ -23,3 +23,9 @@ class Square(Rectangle):
             str: The formatted string representation.
         """
         return "[Square] {}/{}".format(self._Rectangle__width, self._Rectangle__height)
+    
+
+s = Square(13)
+
+print(s)
+print(s.area())
