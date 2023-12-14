@@ -13,6 +13,7 @@ class Square(Rectangle):
             size (int): The size of the square.
         """
         self.__size = size 
+        super().__init__(size, size)
         self.integer_validator("size", size)  # Call the constructor of the parent class (Rectangle)
     def __str__(self):
         """
