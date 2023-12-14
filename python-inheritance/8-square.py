@@ -12,8 +12,8 @@ class Square(Rectangle):
         Args:
             size (int): The size of the square.
         """
-        super().__init__(size, size)  # Call the constructor of the parent class (Rectangle)
-
+        self.__size = size 
+        self.integer_validator("size", size)  # Call the constructor of the parent class (Rectangle)
     def __str__(self):
         """
         Return a string representation of the square.
