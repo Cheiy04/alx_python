@@ -6,21 +6,29 @@ class Square(Rectangle):
 
     '''This is an initializer for the size of the square'''
     def __init__(self, size):
-        self.__size = size
-        super().__init__(size, size)
-        self.integer_validator("size", size)
+        """
+        Initialize a Square instance with the specified size.
 
-    '''Functon to return our string'''
+        Args:
+            size (int): The size of the square.
+        """
+        super().__init__(size, size)  # Call the constructor of the parent class (Rectangle)
+
     def __str__(self):
-        '''Returns a string rep of our square'''
-        return "[Square] {}/{}".format(self.__size, self.__size)
-    
-    '''Function that calculates the area of our square'''
-    def area(self):
-        return self.__size ** 2
+        """
+        Return a string representation of the square.
+
+        Returns:
+            str: The formatted string representation.
+        """
+        return "[Square] {}/{}".format(self._Rectangle__width, self._Rectangle__height)
 
     
 
     
 
 
+s = Square(13)
+
+print(s)
+print(s.area())
