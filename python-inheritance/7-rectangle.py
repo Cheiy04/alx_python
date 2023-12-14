@@ -9,8 +9,8 @@ class Rectangle(BaseGeometry):
     def __init__(self, width, height):
         self.__width = width
         self.__height = height
-        self.integer_validator("size", width)
-        self.integer_validator("size", height)
+        self.integer_validator("width", width)
+        self.integer_validator("height", height)
 
     '''Function that calculates the area of the rectangle'''
     def area(self):
