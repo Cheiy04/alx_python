@@ -22,13 +22,3 @@ class Square(Rectangle):
             str: The formatted string representation.
         """
         return "[Square] {}/{}".format(self._Rectangle__width, self._Rectangle__height)
-
-    
-
-    
-
-
-s = Square(13)
-
-print(s)
-print(s.area())
