@@ -24,9 +24,9 @@ class Rectangle(Base):
         '''setter for the widht of the rectangle'''
         '''Raising exceptions if the input is not an integer or input is <= 0'''
         if type(value) is not int:
-            raise TypeError("{} must be an integer".format(value))
+            raise TypeError("width must be an integer")
         if value <= 0:
-            raise ValueError("{} must be > 0".format(value))
+            raise ValueError("width must be > 0")
         
         self.__width = value
 
@@ -42,9 +42,9 @@ class Rectangle(Base):
         '''setter for the height of the rectangle'''
 
         if type(value) is not int:
-            raise TypeError("{} must be an integer".format(value))
+            raise TypeError("height must be an integer")
         if value <= 0:
-            raise ValueError("{} must be > 0".format(value))
+            raise ValueError("height must be > 0")
         self.__height = value
 
     '''Getter and setter for the x value'''
@@ -58,9 +58,9 @@ class Rectangle(Base):
         '''setter for the x value'''
 
         if type(value) is not int:
-            raise TypeError("{} must be an integer".format(value))
+            raise TypeError("x must be an integer")
         if value < 0:
-            raise ValueError("{} must be >= 0".format(value))
+            raise ValueError("x must be >= 0")
         self.__x = value
 
     '''Getter and setter for y value'''
@@ -74,7 +74,7 @@ class Rectangle(Base):
         '''setter for the y value'''
 
         if type(value) is not int:
-            raise TypeError("{} must be an integer".format(value))
+            raise TypeError("y must be an integer")
         if value < 0:
-            raise ValueError("{} must be >= 0".format(value))
+            raise ValueError("y must be >= 0")
         self.__y = value
