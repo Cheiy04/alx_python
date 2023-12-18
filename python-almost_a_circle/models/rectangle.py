@@ -1,5 +1,5 @@
 '''Importing the base file'''
-from base import Base
+from models.base import Base
 
 '''Creating the class rectangle that inherits from Base'''
 class Rectangle(Base):
