@@ -93,3 +93,6 @@ class Rectangle(Base):
                 print("#", end="")
             print()
 
+    '''Overiding the __str__ method'''
+    def __str__(self):
+        return "[Rectangle] ({}) {:d}/{:d} - {:d}/{:d}".format(self.id, self.__x, self.__y, self.__width, self.__height)
