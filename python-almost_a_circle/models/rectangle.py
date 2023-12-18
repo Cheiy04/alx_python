@@ -23,7 +23,7 @@ class Rectangle(Base):
     def width(self, value):
         '''setter for the widht of the rectangle'''
         '''Raising exceptions if the input is not an integer or input is <= 0'''
-        if type(value) is not int:
+        if not isinstance(value, int):
             raise TypeError("width must be an integer")
         if value <= 0:
             raise ValueError("width must be > 0")
@@ -41,7 +41,7 @@ class Rectangle(Base):
     def height(self, value):
         '''setter for the height of the rectangle'''
 
-        if type(value) is not int:
+        if not isinstance(value, int):
             raise TypeError("height must be an integer")
         if value <= 0:
             raise ValueError("height must be > 0")
