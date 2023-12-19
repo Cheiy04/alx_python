@@ -2,8 +2,9 @@
 import requests
 import sys
 
-url = sys.argv[1]
+url =  sys.argv[1]
 
 response = requests.get(url)
+# value = response['X-Request-Id="School"']
 
-print(response)
+# print(response.status_code)
