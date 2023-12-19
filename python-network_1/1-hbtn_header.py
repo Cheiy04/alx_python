@@ -2,7 +2,7 @@
 import requests
 import sys
 
-url =  sys.argv[1]
+url =  input("Enter URL:") if len(sys.argv) < 2 else sys.argv[1]
 
 response = requests.get(url)
 # value = response['X-Request-Id="School"']
