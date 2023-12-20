@@ -8,15 +8,15 @@ import sys
 
 '''Variable to store our url and letter'''
 url = "http://0.0.0.0:5000/search_user"
-q = "" if len(sys.argv) < 1 else sys.argv[1]
+q = "" if len(sys.argv) == 1 else sys.argv[1]
 
 '''data to be sent to our url'''
-data_to_send = {
+payload = {
     'q': q
 }
 
 '''Post to the url'''
-response = requests.post(url=url, data=data_to_send)
+response = requests.post(url=url, data=payload)
 
 try:
     check_json = response.json()
