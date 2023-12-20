@@ -5,7 +5,7 @@ import requests
 
 
 
-url = sys.argv[1]
+url = input("Enter URL") if len(sys.argv) < 2 else sys.argv[1]
 
 response = requests.get(url=url)
 value = response.headers['X-Request-Id']
