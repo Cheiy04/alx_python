@@ -7,12 +7,12 @@ import sys
 import requests
 
 '''Variables to Store a URL and an email address'''
-url = sys.argv[1]
-email = sys.argv[2]
-data = {
+url_to_use = input("Enter URL: ") if len(sys.argv) < 2 else sys.argv[1]
+email = input("Enter Email: ") if len(sys.argv) < 3 else sys.argv[2]
+data_to_be_sent = {
     'email':email
 }
 
 '''Sending a post request to the url with the email'''
-respone = requests.post(url=url, data=data)
-print(respone.text)
+response = requests.post(url=url_to_use, data=data_to_be_sent)
+print(response.text)
