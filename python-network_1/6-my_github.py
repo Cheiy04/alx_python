@@ -19,6 +19,6 @@ response = requests.get(url=git_api, auth=(user_name, password))
 '''Checking for succesful response'''
 if response.status_code == 200:
     user_id = response.json()['id']
-    print("Your Github id is {}".format(user_id))
+    print(user_id)
 else:
-    print("Error in getting a response")
+    print("None")
