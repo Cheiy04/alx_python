@@ -10,4 +10,9 @@ if __name__ == '__main__':
 
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM states ORDER BY id ASC')
+    rows = cursor.fetchall()
+    for row in rows:
+        print(row)
+    cursor.close()
+    conn.close()
 
