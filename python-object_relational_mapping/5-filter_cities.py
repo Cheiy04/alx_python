@@ -28,6 +28,7 @@ if __name__ == '__main__':
         print(state[0], end='')
         if i < len(states)-1:
             print(', ', end='')
+    print('')
         #     print("".join(state[0]), end=' ')
         # else:
         #     print("".join(state[0]), end=', ')
