@@ -15,7 +15,8 @@ if __name__ == '__main__':
     conn = MySQLdb.connect(**db_config)
     cursor = conn.cursor()
 
-    query = """ SELECT states.name, cities.id, cities.name, FROM cities
+    query = """ SELECT cities.id, cities.name, states.name 
+                FROM cities
                 INNER JOIN states ON
                 cities.state_id = states.id 
                 ORDER BY cities.id
