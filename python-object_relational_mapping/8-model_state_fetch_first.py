@@ -14,7 +14,7 @@ if __name__ == '__main__':
             state = session.query(State.id, State.name).order_by(State.id).first()
             print(f"{state.id}: {state.name}")
         except TypeError:
-            print("")
+            print("Nothing")
 
         #close session
         session.close()
