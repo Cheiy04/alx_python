@@ -10,10 +10,10 @@ if __name__ == '__main__':
         engine = create_engine(f"mysql+mysqldb://{username}:{password}@localhost:{port}/{db}" , pool_pre_ping=True)
         Session = sessionmaker(bind=engine)
         session = Session()
-        try:
-            state = session.query(State.id, State.name).order_by(State.id).first()
+        state = session.query(State.id, State.name).order_by(State.id).first()
+        if state:
             print(f"{state.id}: {state.name}")
-        except TypeError:
+        else: 
             print("Nothing")
 
         #close session
