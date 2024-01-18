@@ -10,17 +10,16 @@ from sqlalchemy.orm import sessionmaker
 # db =        argv[3]
 # port =      3306
 
-def conn(username, password, db):
-    engine = create_engine(f"mysql+mysqldb://{password}:{username}@localhost:/{db}" , pool_pre_ping=True)
-    Session = sessionmaker(bind=engine)
-    session = Session()
-    states = session.query(State).all()
-    for state in states:
-        print(f"{state.id}:{state.name}")
-
-    #close session
-    session.close()
-
 if __name__ == '__main__':
+    def conn(username=argv[1], password=argv[2], port=3306, db=argv[3]):
+        engine = create_engine(f"mysql+mysqldb://{username}:{password}@localhost:{port}/{db}" , pool_pre_ping=True)
+        Session = sessionmaker(bind=engine)
+        session = Session()
+        states = session.query(State).order_by(State.id).all()
+        for state in states:
+            print(f"{state.id}:{state.name}")
 
-    conn(argv[1], argv[2], argv[3])
+        #close session
+        session.close()
+
+    conn()
