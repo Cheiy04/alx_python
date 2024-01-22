@@ -1,18 +1,23 @@
-'''Importing Flask class from flask module'''
+# Importing Flask class from the flask module
 from flask import Flask
 
-'''creating an instance of the class'''
+# Creating an instance of the Flask class
 app = Flask(__name__)
 
-'''setting a url to execute our function and a function that prints an output'''
+# Setting a URL route to execute our function and defining a function that prints an output
 @app.route("/")
 def hello():
-    '''Returns the following string'''
+    '''
+    Function to handle requests to the root URL ("/").
+    
+    Returns:
+        str: A simple greeting string.
+    '''
+    # Returns the following string
     return "Hello HBNB!"
 
-
-'''Calling the function'''
+# Calling the hello function
 print(hello())
 
-'''Running our application on a server'''
+# Running our Flask application on a server
 app.run()
