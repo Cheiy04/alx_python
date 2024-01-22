@@ -25,7 +25,7 @@ if __name__ == '__main__':
     cursor.execute(query, (argv[4],))
     states = cursor.fetchall()
     for i, state in enumerate(states):
-        print(state[0], end='')
+        print( state[0], end='')
         if i < len(states)-1:
             print(', ', end='')
     print('')

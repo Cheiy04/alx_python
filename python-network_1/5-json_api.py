@@ -12,7 +12,7 @@ q = "" if len(sys.argv) == 1 else sys.argv[1]
 
 '''data to be sent to our url'''
 payload = {
-    'q': q
+    'our_letter': q
 }
 
 '''Post to the url'''
