@@ -36,7 +36,7 @@ def number(n):
 '''Routing to /number_template'''
 @app.route("/number_template/<int:n>")
 def temp(n):
-    return render_template("5-number.html")
+    return render_template("5-number.html", n=n)
 
 
 '''runs if it is the main script and not while imported'''
