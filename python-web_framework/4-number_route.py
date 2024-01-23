@@ -29,7 +29,7 @@ def python_fun(text='is cool'):
     return f"Python {formatted_text}"
 
 '''Routing to /number '''
-@app.route("/python/<int:n>")
+@app.route("/number/<int:n>")
 def number(n):
     return f"{n} is a number"
 
