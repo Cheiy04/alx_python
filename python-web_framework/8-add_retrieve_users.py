@@ -48,7 +48,7 @@ def add_user():
 
         try:
             # Attempt to insert the new user into the User table
-            new_user = User(name=name, email=email)
+            new_user = User(name=name, email=email) # type: ignore
             db.session.add(new_user)
             db.session.commit()
 
