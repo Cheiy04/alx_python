@@ -64,5 +64,18 @@ def add_user():
     # For GET requests, render the add_user.html template
     return render_template('add_user.html')
 
+# Route to retrieve and display all users
+@app.route('/users', strict_slashes=False)
+def display_users():
+    # Connect to the alx_flask_db database
+    db.init_app(app)
+
+    # Retrieve all users from the User table
+    users = User.query.all()
+
+    # Render the results using the 8-users.html template
+    return render_template('users.html', users=users)
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
