@@ -24,6 +24,6 @@ completed_tasks = len(completed)
 
 print(f"Employee {name} is done with tasks({completed_tasks}/{total_tasks}):")
 for i in completed:
-    print(f"\t{i}")
+    print(f"\t {i}")
 
 
