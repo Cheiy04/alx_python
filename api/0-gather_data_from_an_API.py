@@ -1,7 +1,8 @@
 '''Importing required libs'''
-from urllib import response
 import requests
 import sys
+from urllib import response
+
 '''Getting the url'''
 url = "https://jsonplaceholder.typicode.com/users"
 user_id = sys.argv[1]
