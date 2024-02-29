@@ -2,6 +2,7 @@ import json
 import requests
 
 
+
 def get_employee_info(employee_id):
     """Fetch the employee details from the given URL by appending the employee_id and convert the data to JSON."""
     employee_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}'
@@ -30,7 +31,6 @@ def export_all_tasks():
     # Writing to JSON file
     with open("todo_all_employees.json", "w") as json_file:
         json.dump(all_employees_tasks, json_file, indent=4)
-
 
 if __name__ == "__main__":
     export_all_tasks()
