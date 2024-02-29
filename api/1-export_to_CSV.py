@@ -1,43 +1,38 @@
 '''Importing required libs'''
-import csv
 import requests
+import csv
 import sys
-from urllib import response
 
-'''Creating a function to export the data into the csv file'''
+def get_employee_info(employee_id):
+    # Get employee details
+    employee_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}'
+    response_employee = requests.get(employee_url)
+    employee_data = response_employee.json()
 
-def export_to_CSV(user_id):
-    """ The task define export to the CSV format"""
+    # Get employee's TODO list
+    todo_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}/todos'
+    response_todo = requests.get(todo_url)
+    todo_list = response_todo.json()
 
-    # Variables
-    allTasks = []
+    # Create CSV file
+    csv_file_path = f'{employee_id}.csv'
+    with open(csv_file_path, mode='w', newline='', encoding='utf-8') as csv_file:
+        fieldnames = ['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE']
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
-    url = "https://jsonplaceholder.typicode.com"
+        # Write header
+        writer.writeheader()
 
-    # get requests for both endpoints
-    user_response = requests.get("{}/users/{}".format(url, user_id))
-    todo_response = requests.get("{}/users/{}/todos".format(url, user_id))
-
-    # Get the json from responses
-    name = user_response.json()['username']
-    todosJson = todo_response.json()
-
-    # Save the employee Name -- Loop the tasks and save
-    for task in todosJson:
-        taskRow = []
-        taskRow.append(user_id)
-        taskRow.append(name)
-        taskRow.append(task['completed'])
-        taskRow.append(task['title'])
-        allTasks.append(taskRow)
-    '''Creating a csv file and giving it the user information'''
-    with open("{}.csv".format(user_id), "w") as csvFile:
-        csvWriter = csv.writer(csvFile, quoting=csv.QUOTE_ALL)
-        csvWriter.writerows(allTasks)
-
-    return 0
+        # Write tasks
+        for task in todo_list:
+            writer.writerow({
+                'USER_ID': employee_id,
+                'USERNAME': employee_data['username'],
+                'TASK_COMPLETED_STATUS': str(task['completed']),
+                'TASK_TITLE': task['title']
+            })
 
 
 if __name__ == '__main__':
-    export_to_CSV(int(sys.argv[1]))
+   get_employee_info(int(sys.argv[1]))
 
