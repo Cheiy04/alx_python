@@ -1,39 +1,37 @@
 '''importing required libs'''
 import json
 import requests
-from sys import argv
+import sys
 
+"""This function will take an employee's id as an argument and return a json file with the required details"""
+def get_employee_info(employee_id):
+    """Fetch the employee details from the given url by appending the employee_id and convert the data to json"""
+    employee_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}'
+    employee_response = requests.get(employee_url)
+    employee_data = employee_response.json()
 
-def task_to_json(user_id):
-    # Variables
-    userDict = {}
+    """fetch the employee's todo by appending the todo route to the url"""
+    todos_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}/todos'
+    todos_response = requests.get(todos_url)
+    todos_data = todos_response.json()
 
-    url = "https://jsonplaceholder.typicode.com"
+    """create a json file for the employee with required format"""
+    json_file_path = f"{employee_id}.json"
+    json_data = {
+        f"{employee_id}": [
+            {
+                "task": task['title'],
+                "completed": task['completed'],
+                "username": employee_data['username']
+            }
+            for task in todos_data
+        ]
+    }
 
-    '''Get requests from both endpoints'''
-    user_response = requests.get("{}/users/{}".format(url, user_id))
-    todo_response = requests.get("{}/users/{}/todos".format(url, user_id))
-
-    '''Getting the respone in json format'''
-    username = user_response.json()['username']
-    todosJson = todo_response.json()
-
-    '''Save the employee name'''
-    userDict[user_id] = []
-
-    '''Creating for loop to iterate the tasks and save'''
-    for task in todosJson:
-        taskDict = {}
-        taskDict['task'] = task['title']
-        taskDict['username'] = username
-        taskDict['completed'] = task['completed']
-
-        userDict[user_id].append(taskDict)
-
-    '''Creating a csv file to store user info'''
-    with open("{}.json".format(user_id), "w") as jsonFile:
-        json.dump(userDict, jsonFile)
+    """Write the json file with the required details"""
+    with open(json_file_path, 'w') as json_file:
+        json.dump(json_data, json_file, indent=2)
 
 '''Exextuing if this is the main script'''
 if __name__ == "__main__":
-    task_to_json(argv[1])
+    get_employee_info(sys.argv[1])
