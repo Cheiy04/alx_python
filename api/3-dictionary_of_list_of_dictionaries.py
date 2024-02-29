@@ -2,35 +2,35 @@ import json
 import requests
 
 
-def all_json():
-    # Variables
-    userTask = {}
+def get_employee_info(employee_id):
+    """Fetch the employee details from the given URL by appending the employee_id and convert the data to JSON."""
+    employee_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}'
+    employee_response = requests.get(employee_url)
+    employee_data = employee_response.json()
 
-    link = "https://jsonplaceholder.typicode.com"
+    """Fetch the employee's todo by appending the todo route to the URL."""
+    todos_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}/todos'
+    todos_response = requests.get(todos_url)
+    todos_data = todos_response.json()
 
-    # get requests
-    usersJson = requests.get("{}/users".format(link)).json()
-    todosJson = requests.get("{}/todos".format(link)).json()
+    """Compute the number of done tasks and the total number of tasks."""
+    completed_tasks = [{'username': employee_data['username'], 'task': task['title'], 'completed': task['completed']} for task in todos_data]
 
-    userInfo = {}
+    """Return the completed tasks."""
+    return completed_tasks
 
-    # get the json from responses
-    for user in usersJson:
-        userInfo[user['id']] = user['username']
+def export_all_tasks():
+    """Records all tasks from all employees and export data in the JSON format."""
+    all_employees_tasks = {}
 
-    for task in todosJson:
-        if userTask.get(task['userId'], False) is False:
-            userTask[task['userId']] = []
-        taskDict = {}
-        taskDict['username'] = userInfo[task['userId']]
-        taskDict['task'] = task['title']
-        taskDict['completed'] = task['completed']
-        userTask[task['userId']].append(taskDict)
+    # Iterate over employee IDs from 1 to 10 (based on JSONPlaceholder API)
+    for employee_id in range(1, 11):
+        all_employees_tasks[str(employee_id)] = get_employee_info(employee_id)
 
-    nameFile = "todo_all_employees.json"
-    with open(nameFile, "w") as jsonFile:
-        json.dump(userTask, jsonFile)
+    # Writing to JSON file
+    with open("todo_all_employees.json", "w") as json_file:
+        json.dump(all_employees_tasks, json_file, indent=4)
 
 
-if __name__ == '__main__':
-    all_json()
+if __name__ == "__main__":
+    export_all_tasks()
