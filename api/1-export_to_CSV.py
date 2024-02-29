@@ -1,53 +1,41 @@
+""" Using what you did in the task #0, extend your Python script to export
+data in the CSV format. """
 import csv
 import requests
-import sys
+from sys import argv
 
-def employee_info(employee_id):
-    """Retrieve employee details and tasks from the given URL."""
-    # Construct URLs for employee details and tasks
-    employee_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}'
-    todos_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}/todos'
 
-    # Make HTTP GET requests to fetch data
-    employee_response = requests.get(employee_url)
-    todos_response = requests.get(todos_url)
+def export_to_CSV(sizeofReq):
+    """ The task define export to the CSV format"""
 
-    # Extract relevant information from the responses
-    employee_data = employee_response.json()
-    todos_data = todos_response.json()
+    # Variables
+    allTasks = []
 
-    # Initialize a list to store task details
-    tasks = []
+    link = "https://jsonplaceholder.typicode.com"
 
-    # Extract task details
-    for task in todos_data:
-        task_details = (
-            employee_id,
-            employee_data['username'],
-            task['completed'],
-            task['title']
-        )
-        tasks.append(task_details)
+    # get requests
+    usersRes = requests.get("{}/users/{}".format(link, sizeofReq))
+    todosRes = requests.get("{}/users/{}/todos".format(link, sizeofReq))
 
-    """creating csv file for the empoyee"""
-    file_name = f"{employee_id}.csv"
-    with open(file_name, "w", newline='') as csv_file:
-        fieldnames = ['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE' ]
-        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+    # Get the json from responses
+    name = usersRes.json().get('username')
+    todosJson = todosRes.json()
 
-        """Write the csv headers"""
-        writer.writeheader()
+    # Save the employee Name -- Loop the tasks and save
+    for task in todosJson:
+        taskRow = []
+        taskRow.append(sizeofReq)
+        taskRow.append(name)
+        taskRow.append(task.get('completed'))
+        taskRow.append(task.get('title'))
+        allTasks.append(taskRow)
 
-        """Write the rows under the epecified columns"""
-        for task in todos_data:
-            writer.writerow({
-                'USER_ID': employee_id,
-                'USERNAME': employee_data['username'],
-                'TASK_COMPLETED_STATUS': task['completed'],
-                'TASK_TITLE': task['title']
-            })
+    with open("{}.csv".format(sizeofReq), "w") as csvFile:
+        csvWriter = csv.writer(csvFile, quoting=csv.QUOTE_ALL)
+        csvWriter.writerows(allTasks)
+
+    return 0
 
 
 if __name__ == '__main__':
-   employee_info(int(sys.argv[1]))
-
+    export_to_CSV(int(argv[1]))
